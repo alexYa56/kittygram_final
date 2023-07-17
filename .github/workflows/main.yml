@@ -59,17 +59,9 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
-          # Параметр context: ./backend/ указывает, что нужный Dockerfile
-          # находится в ./backend/
           context: ./backend/
-          # Параметр push: true указывает, что образ нужно не только собрать,
-          # но и отправить на Docker Hub
           push: true
-          # В параметре tags задаётся название и тег для образа.
-          # Для каждого пересобранного образа
-          # устанавливаем тег latest, чтобы потом
-          # на сервере и в docker-compose.yml не указывать версию
-          tags: alexya56/taski_backend:latest
+          tags: alexya56/kittygram_backend:latest
 
   frontend_tests:
     runs-on: ubuntu-latest
