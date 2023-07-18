@@ -7,9 +7,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('TOKEN')
+SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
-DEBUG = os.getenv("DEBUG")
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'kittyale.duckdns.org']
 
