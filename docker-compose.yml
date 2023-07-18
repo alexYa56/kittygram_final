@@ -7,7 +7,6 @@ volumes:
   media_kittygram:
 
 services:
-
   db:
     image: postgres:13
     container_name: kittygram_db
@@ -15,7 +14,6 @@ services:
     volumes:
       - pg_data_kittygram:/var/lib/postgresql/data
     restart: always
-
   backend:
     build: ./backend/
     container_name: kittygram_backend
@@ -26,7 +24,6 @@ services:
     depends_on:
       - db
     restart: on-failure
-
   frontend:
     build: ./frontend/
     container_name: kittygram_frontend
@@ -37,7 +34,6 @@ services:
     depends_on:
       - backend
     restart: no
-
   gateway:
     build: ./nginx/
     container_name: kittygram_gateway
