@@ -2,9 +2,9 @@ version: '3'
 
 volumes:
 
-  pg_data_kittygram:
-  static_kittygram:
-  media_kittygram:
+  pg_data:
+  static:
+  media:
 
 services:
   db:
@@ -12,37 +12,32 @@ services:
     container_name: kittygram_db
     env_file: .env
     volumes:
-      - pg_data_kittygram:/var/lib/postgresql/data
-    restart: always
+      - pg_data:/var/lib/postgresql/data
+
   backend:
     build: ./backend/
     container_name: kittygram_backend
     env_file: .env
     volumes:
-      - static_kittygram:/backend_static
-      - media_kittygram:/app/media
+      - static:/backend_static/
+      - media:/app/media/
     depends_on:
       - db
-    restart: on-failure
+
   frontend:
     build: ./frontend/
     container_name: kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_kittygram:/frontend_static
-    depends_on:
-      - backend
-    restart: no
+      - static:/frontend_static
+
   gateway:
     build: ./nginx/
     container_name: kittygram_gateway
     env_file: .env
     volumes:
-      - static_kittygram:/staticfiles
-      - media_kittygram:/media
+      - static:/staticfiles/
+      - media:/app/media/
     ports:
       - 9000:80
-    depends_on:
-      - backend
-    restart: always
