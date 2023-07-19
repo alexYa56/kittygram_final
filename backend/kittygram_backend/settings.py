@@ -12,7 +12,8 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "kittyale.duckdns.org"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost',
+                 '158.160.4.61', 'kittyale.duckdns.org']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
