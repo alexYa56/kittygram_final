@@ -16,8 +16,8 @@ services:
     image: alexya56/kittygram_backend
     env_file: .env
     volumes:
-      - static_prod:/backend_static
-      - media_prod:/app/media
+      - static_prod:/backend_static/
+      - media_prod:/app/media/
 
   frontend:
     image: alexya56/kittygram_frontend
@@ -30,7 +30,7 @@ services:
     image: alexya56/kittygram_gateway
     env_file: .env
     volumes:
-      - static_prod:/staticfiles
-      - media_prod:/media
+      - static_prod:/staticfiles/
+      - media_prod:/media/
     ports:
       - 9000:80
