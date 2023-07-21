@@ -1,19 +1,21 @@
 # flake8: noqa
 import os
+
 from pathlib import Path
 from dotenv import load_dotenv
+from distutils.util import strtobool
+from django.core.management.utils import get_random_secret_key
 
 load_dotenv()
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = str(os.getenv("SECRET_KEY"))
+SECRET_KEY = os.getenv("SECRET_KEY", default=get_random_secret_key())
 
-DEBUG = os.getenv("DEBUG")
+DEBUG = bool(strtobool(os.getenv('DEBUG', 'false')))
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost',
-                 '158.160.4.61', 'kittyale.duckdns.org']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(', ')
 
 INSTALLED_APPS = [
     "django.contrib.admin",
